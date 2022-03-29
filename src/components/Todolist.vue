@@ -1,6 +1,8 @@
 <template>
   <button @click="loading">FavIcon</button>
 
+  <span class="dustbin"> 🗑 </span>
+
   <div>
     <input v-model="title" type="text" @keydown.enter="addTodo" />
     <button v-if="active < all" @click="clear">清理</button>
@@ -26,11 +28,19 @@
       <div class="info">哥，你啥也没输入！</div>
     </div>
   </transition>
+
+  <div class="animate-wrap">
+    <transition @before-enter="beforeEnter" @enter="enter" @after-enter="afterEnter">
+      <div v-show="animate.show" class="animate">
+        📋
+      </div>
+    </transition>
+  </div>
 </template>
 <script setup>
 import { useTodos } from "../utils/useTodos";
 import { useStorage } from "../utils/useStorage";
-import { ref, watchEffect, computed } from "vue";
+import { ref, reactive, watchEffect, computed } from "vue";
 
 let { title, todos, clear, active, all, allDone } = useTodos();
 // addTodo, 
@@ -62,10 +72,37 @@ function addTodo() {
   title.value = "";
 }
 
-function removeTodo(e, i) {
-  todos.value.splice(i, 1)
+
+let animate = reactive({
+  show:false,
+  el:null
+})
+
+function beforeEnter(el){
+      let dom = animate.el
+      let rect = dom.getBoundingClientRect()
+      let x = window.innerWidth - rect.left - 60
+      let y = rect.top - 10
+
+      el.style.transform = `translate(-${x}px, ${y}px)`
 }
 
+function enter(el,done){
+      document.body.offsetHeight
+      el.style.transform = "translate(0,0)"
+      el.addEventListener("transitionend", done)
+}
+
+function afterEnter(el){
+      animate.show = false
+      el.style.display = "none"
+}
+
+function removeTodo(e,i){
+  animate.el = e.target
+  animate.show = true
+  todos.value.splice(i,1)
+}
 </script> 
 <style>
 .info-wrapper {
@@ -107,3 +144,18 @@ function removeTodo(e, i) {
 }
 </style>
 
+
+<style>
+/* dustbin */
+.animate-wrap .animate{
+    position :fixed;
+    right :10px;
+    top :10px;
+    z-index: 100;
+    transition: all 0.5s linear;
+}
+.dustbin {
+  position: absolute;
+  right: 0;top: 0;
+}
+</style>
