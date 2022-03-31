@@ -60,3 +60,29 @@ delete proxy.count
 // 删除属性后，我们打印log时，输出的结果就会是 undefined NaN
 console.log(obj.count,double) 
 ```
+
+## 13丨JSX：应对更灵活的开发场景，你需要JSX.html
+
+JSX 相比于 template 还有一个优势，是可以在一个文件内返回多个组件，我们可以像下面的代码一样，在一个文件内返回 Button、Input、Timeline 等多个组件。
+```js
+export const Button = (props,{slots})=><button {...props}>slots.default()</button>
+export const Input = (props)=><input {...props} />
+export const Timeline = (props)=>{
+  ...
+}
+```
+
+
+TimeLine 组件的源码中，有一个`reverse` 的属性来决定是否倒序渲染，我们在下面写出了类似的代码。代码中的 `Timeline` 是一个数组，数组中的两个元素都是 JSX，我们可以通过数组的 `reverse` 方法直接进行数组反转，实现逆序渲染。类似这种动态性要求很高的场景，template 是较难实现的。
+```js
+export const Timeline = (props)=>{
+    const timeline = [
+        <div class="start">8.21 开始自由职业</div>,
+        <div class="online">10.18 专栏上线</div>
+    ]
+    if(props.reverse){
+        timeline.reverse()
+    }
+    return <div>{timeline}</div>
+}
+```

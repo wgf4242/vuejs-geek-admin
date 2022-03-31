@@ -37,6 +37,7 @@
     </transition>
   </div>
 </template>
+
 <script setup>
 import { useTodos } from "../utils/useTodos";
 import { useStorage } from "../utils/useStorage";
@@ -103,7 +104,8 @@ function removeTodo(e,i){
   animate.show = true
   todos.value.splice(i,1)
 }
-</script> 
+</script>
+ 
 <style>
 .info-wrapper {
   position: fixed;

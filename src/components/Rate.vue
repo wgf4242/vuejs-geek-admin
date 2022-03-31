@@ -1,9 +1,9 @@
 <template>
   <div :style="fontstyle">
     <div class="rate" @mouseout="mouseOut">
-      <span @mouseover="mouseOver(num)" v-for="num in 5" :key="num">☆</span>
+      <span v-for="num in 5" :key="num" @mouseover="mouseOver(num)">☆</span>
       <span class="hollow" :style="fontwidth">
-        <span @click="onRate(num)" @mouseover="mouseOver(num)" v-for="num in 5" :key="num">★</span>
+        <span v-for="num in 5" :key="num" @click="onRate(num)" @mouseover="mouseOver(num)">★</span>
       </span>
     </div>
   </div>
@@ -11,27 +11,28 @@
 
 <script setup>
 // import { defineProps, defineEmits,computed, ref} from 'vue';
-import {computed, ref} from 'vue';
+import {computed, ref} from "vue";
 let props = defineProps({
   value: Number,
-  theme: { type: String, default: 'orange' }
+  theme: { type: String, default: "orange" }
 })
 
-let emits = defineEmits('update-rate') // 定义emits
+let emits = defineEmits("update-rate") // 定义emits
+
 function onRate(num){
-    emits('update-rate',num)
+    emits("update-rate",num)
 }
 
 console.log(props)
 let rate = computed(() => "★★★★★☆☆☆☆☆".slice(5 - props.value, 10 - props.value))
 const themeObj = {
-  'black': '#00',
-  'white': '#fff',
-  'red': '#f5222d',
-  'orange': '#fa541c',
-  'yellow': '#fadb14',
-  'green': '#73d13d',
-  'blue': '#40a9ff',
+  "black": "#00",
+  "white": "#fff",
+  "red": "#f5222d",
+  "orange": "#fa541c",
+  "yellow": "#fadb14",
+  "green": "#73d13d",
+  "blue": "#40a9ff",
 }
 const fontstyle = computed(() => {
   return `color:${themeObj[props.theme]};`
@@ -40,12 +41,15 @@ const fontstyle = computed(() => {
 // ...其他代码
 // 评分宽度
 let width = ref(props.value)
+
 function mouseOver(i) {
   width.value = i
 }
+
 function mouseOut() {
   width.value = props.value
 }
+
 const fontwidth = computed(() => `width:${width.value}em;`)
 </script>
 

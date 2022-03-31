@@ -4,6 +4,7 @@
     <h1 v-if="showTitle">你好 Vue 3</h1>
   </transition>
 </template>
+
 <script setup>
 import { ref } from "vue"
 let showTitle = ref(true)

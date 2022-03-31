@@ -9,6 +9,7 @@
   />
   <button @click="change">click</button>
 </template>
+
 <script setup>
 import { ref } from "vue"
 let width = ref(100)
@@ -17,6 +18,7 @@ function change() {
   width.value += 100
 }
 </script>
+
 <style>
 .box0 {
   background: red;
