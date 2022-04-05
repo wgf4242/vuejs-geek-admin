@@ -8,3 +8,10 @@ import router from "./router/index"
 const app = createApp(App)
 
 app.use(store).use(router).use(Element3).mount("#app")
+
+
+import { setupProdMockServer } from "./mock/mockProdServer"
+if (import.meta.env.MODE === "development") {
+  console.log("mock start")
+  setupProdMockServer()
+}

@@ -18,6 +18,7 @@
         "semi": [
             "warn",
             "never"
-        ]
+        ],
+        "vue/no-multiple-template-root": "off"
     }
 }

@@ -1,25 +1,33 @@
 import axios from "axios"
-import { useMsgbox, Message } from "element3"
+// import { useMsgbox, Message } from "element3"
 import store from "@/store"
 import { getToken } from "@/utils/auth"
+console.log('api is ', import.meta.env)
 const service = axios.create({
-  baseURL: process.env.VUE_APP_BASE_API, // url = base url + request url
-  timeout: 5000, // request timeout
+  // baseURL: import.meta.env.VUE_APP_BASE_API, // url = base url + request url
+  // baseURL: process.env.VUE_APP_BASE_API, // url = base url + request url
+  // timeout: 5000, // request timeout
 })
 
 service.interceptors.request.use(
   config => {
-    if (store.getters.token) {
-      config.headers["X-Token"] = getToken()
+    // if (store.getters.token) {
+    //   config.headers["X-Token"] = getToken()
+    // }
+    const token = getToken()
+    // do something before request is sent
+    if (token) {
+      config.headers.gtoken = token
     }
-
     return config
   },
-  error => {
-    console.log(error) // for debug
+    error => {
+      // do something with request error
+      console.log(error) // for debug
+      return Promise.reject(error)
+    }
 
-    return Promise.reject(error)
-  }
+
 )
 service.interceptors.response.use(
   response => {

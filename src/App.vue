@@ -30,12 +30,9 @@
     </el-header>
     <el-container>
       <el-aside width="200px">
-        <div>
-          <router-link to="/"> Home</router-link> 
-        </div>
-        <div>
-          <router-link to="/about">About</router-link>
-        </div>
+        <div> <router-link to="/login"> Login</router-link> </div>
+        <div> <router-link to="/"> Home</router-link> </div>
+        <div> <router-link to="/about">About/登录后AddRoute</router-link> </div>
       </el-aside>
       <el-container>
         <el-main>
