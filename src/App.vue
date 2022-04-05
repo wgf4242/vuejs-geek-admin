@@ -2,7 +2,7 @@
   <el-container>
     <el-header>
       <el-menu
-        :default-active="1"
+        default-active="1"
         class="el-menu-demo"
         mode="horizontal"
         background-color="#545c64"
@@ -33,6 +33,8 @@
         <div> <router-link to="/login"> Login</router-link> </div>
         <div> <router-link to="/"> Home</router-link> </div>
         <div> <router-link to="/about">About/登录后AddRoute</router-link> </div>
+        <div> <router-link to="/DirectiveView"> DirectiveView</router-link> </div>
+        <div> <router-link to="/EChartView"> EChartView</router-link> </div>
       </el-aside>
       <el-container>
         <el-main>

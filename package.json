@@ -9,6 +9,7 @@
   },
   "dependencies": {
     "@vueuse/core": "^8.2.0",
+    "echarts": "^5.3.2",
     "element3": "^0.0.40",
     "mockjs": "^1.1.0",
     "vue": "^3.2.25",
@@ -25,6 +26,7 @@
     "i": "^0.3.7",
     "npm": "^8.6.0",
     "nprogress": "^0.2.0",
+    "rollup-plugin-visualizer": "^5.6.0",
     "sass": "^1.49.10",
     "vite": "^2.8.0",
     "vite-plugin-mock": "^2.9.6"
