@@ -61,7 +61,7 @@ delete proxy.count
 console.log(obj.count,double) 
 ```
 
-## 13丨JSX：应对更灵活的开发场景，你需要JSX.html
+# 13丨JSX：应对更灵活的开发场景，你需要JSX.html
 
 JSX 相比于 template 还有一个优势，是可以在一个文件内返回多个组件，我们可以像下面的代码一样，在一个文件内返回 Button、Input、Timeline 等多个组件。
 ```js
@@ -85,4 +85,36 @@ export const Timeline = (props)=>{
     }
     return <div>{timeline}</div>
 }
+```
+
+# 19丨实战痛点5：如何打包发布你的Vue3应用_.html
+
+在 Gtihub 中，我们可以使用 actions 去配置打包的功能，下面的代码是 actions 的配置文件。在这个配置文件中，我们使用 Ubuntu 作为服务器的打包环境，然后拉取 GitHub 中最新的 master 分支代码，并且把 Node 版本固定为 14.7.6，执行 npm install 安装代码所需依赖后，再执行 npm run build 进行代码打包压缩。在下面的代码中，我们就通过 GitHub Actions 自动化打包了一份准备上线的代码。
+
+```yaml
+
+name: 打包应用的actions
+on:
+  push: # 监听代码时间
+    branches:
+      - master  # master分支代码推送的时候激活当前action
+jobs:
+  build:
+    # runs-on 操作系统
+    runs-on: ubuntu-latest
+    steps:
+      - name: 迁出代码
+        uses: actions/checkout@master
+      # 安装Node
+      - name: 安装Node
+        uses: actions/setup-node@v1
+        with:
+          node-version: 14.7.6
+      # 安装依赖
+      - name: 安装依赖
+        run: npm install
+      # 打包
+      - name: 打包
+        run: npm run build
+
 ```
