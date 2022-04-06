@@ -1,6 +1,6 @@
-# Vue 3 + Vite
-
-This template should help get you started developing with Vue 3 in Vite. The template uses Vue 3 `<script setup>` SFCs, check out the [script setup docs](https://v3.vuejs.org/api/sfc-script-setup.html#sfc-script-setup) to learn more.
+# Init
+git clone this_repo
+git submodule update --init --recursive
 
 ## Recommended IDE Setup
 
@@ -117,4 +117,34 @@ jobs:
       - name: 打包
         run: npm run build
 
+```
+
+
+
+# 20丨组件库：如何设计你自己的通用组件库  | husky
+
+02-ailemente
+```
+npm init vite@latest
+> vue-ts
+
+npm install -D husky # 安装husky
+npx husky install    # 初始化husky
+# 新增commit msg钩子
+npx husky add .husky/commit-msg "node scripts/verifyCommit.js" 
+```
+
+来项目目录下的 verifyCommit 文件。在下面的代码中，我们先去 .git/COMMIT_EDITMSG 文件中读取了 commit 提交的信息，然后使用了正则去校验提交信息的格式。如果 commit 的信息不符合要求，会直接报错并且终止代码的提交。
+
+如下图，feat 代表新功能，docs 代表文档，perf 代表性能。下面的提交日志就能告诉我们这次提交的是组件相关的新功能，代码中新增了 Button.vue。
+
+```
+feat(component):  add Button.vue
+```
+![](https://gitee.com/wgf4242/imgs/raw/master/imgs/Vue 3 的代码提交记录.png)
+
+
+提交之前进行ling
+```sh
+npx husky add .husky/commit-msg "npm run lint"
 ```
