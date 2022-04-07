@@ -6,19 +6,30 @@
     "dev": "vite",
     "lint": "eslint --ext .js src",
     "build": "vue-tsc --noEmit && vite build",
+    "test": "jest",
     "preview": "vite preview"
   },
   "dependencies": {
     "vue": "^3.2.25"
   },
   "devDependencies": {
+    "@babel/core": "^7.17.9",
+    "@babel/preset-env": "^7.16.11",
+    "babel-preset-env": "^1.7.0",
+    "@babel/preset-typescript": "^7.16.7",
+    "@types/jest": "^27.4.1",
     "@vitejs/plugin-vue": "^2.3.0",
+    "@vue/test-utils": "^2.0.0-rc.18",
+    "babel-jest": "26",
     "eslint": "^8.12.0",
     "eslint-plugin-vue": "^8.5.0",
     "husky": "^7.0.4",
+    "jest": "26",
     "sass": "^1.49.11",
+    "ts-jest": "26",
     "typescript": "^4.5.4",
     "vite": "^2.9.0",
+    "vue-jest": "^5.0.0-alpha.10",
     "vue-tsc": "^0.29.8"
   }
 }

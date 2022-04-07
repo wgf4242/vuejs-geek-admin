@@ -148,3 +148,46 @@ feat(component):  add Button.vue
 ```sh
 npx husky add .husky/commit-msg "npm run lint"
 ```
+
+
+# 21丨单元测试：如何使用TDD开发一个组件_.html 
+
+pnpm install -D jest@26 vue-jest@next @vue/test-utils@next 
+pnpm install -D babel-jest@26 @babel/core @babel/preset-env 
+pnpm install -D ts-jest@26 @babel/preset-typescript @types/jest
+pnpm install -D babel-preset-env
+
+babel.config.js
+```js
+module.exports = {
+  presets: [
+    [
+      "@babel/preset-env",
+      {
+        targets: { node: "current" },
+      },
+    ],
+    "@babel/preset-typescript",
+  ],
+}
+```
+
+jest.config.js
+```js
+module.exports = {
+  transform: {
+    // .vue文件用 vue-jest 处理
+    "^.+\\.vue$": "vue-jest",
+    // .js或者.jsx用 babel-jest处理
+    "^.+\\.jsx?$": "babel-jest",
+    //.ts文件用ts-jest处理
+    "^.+\\.ts$": "ts-jest",
+  },
+  testMatch: ["**/?(*.)+(spec).[jt]s?(x)"],
+  collectCoverage: true,
+  coverageReporters: ["json", "html"],
+}
+
+```
+
+
